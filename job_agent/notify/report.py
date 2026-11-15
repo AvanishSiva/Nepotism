@@ -127,6 +127,7 @@ def render(d: Digest) -> str:
 {_outreach(d.outreach)}
 <h2>Skipped</h2><details><summary>{d.counts.get('skip', 0)} jobs, by reason</summary>
 <table>{skipped}</table></details>
+{('<h2>Closed since last digest</h2><table>' + ''.join(f"<tr><td>✕ {_e(x)}</td></tr>" for x in d.closed) + '</table>') if d.closed else ''}
 <h2>Status</h2><p class="sub">{_e(d.linkedin_status)}</p>
 </main>{_COPY_JS}</body></html>"""
 

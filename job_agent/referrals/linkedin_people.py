@@ -188,7 +188,7 @@ def target_companies(conn: sqlite3.Connection, only: str | None = None) -> list[
         """SELECT c.*, max(s.score) AS best, group_concat(j.id) AS job_ids
            FROM job_scores s JOIN jobs j ON j.id = s.job_id JOIN companies c ON c.id = j.company_id
            LEFT JOIN applications a ON a.job_id = j.id
-           WHERE s.decision = 'referral_first' AND a.job_id IS NULL
+           WHERE s.decision = 'referral_first' AND a.job_id IS NULL AND j.closed_at IS NULL
              AND coalesce((SELECT verdict FROM feedback f WHERE f.job_id = j.id ORDER BY f.id DESC LIMIT 1), '') != 'skip'
            GROUP BY c.id ORDER BY best DESC""").fetchall()
     if only:

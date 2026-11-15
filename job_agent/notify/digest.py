@@ -34,6 +34,7 @@ class Digest:
     new_count: int
     skipped_reasons: dict
     linkedin_status: str = ""
+    closed: list[str] = field(default_factory=list)
     outreach: list[dict] = field(default_factory=list)
 
     @property
@@ -52,6 +53,7 @@ def build(conn: sqlite3.Connection, *, since: str | None) -> Digest:
                   j.linkedin_job_url, j.first_seen_at, coalesce(j.posted_at, j.alert_date) AS posted,
                   s.score, s.decision, s.explanation, s.reasons_json, s.low_confidence, s.facts_json
            FROM job_scores s JOIN jobs j ON j.id = s.job_id LEFT JOIN companies c ON c.id = j.company_id
+           WHERE j.closed_at IS NULL
            ORDER BY CASE s.decision WHEN 'referral_first' THEN 0 WHEN 'apply_direct' THEN 1 ELSE 2 END,
                     s.low_confidence, s.score DESC"""
     ).fetchall()
@@ -81,7 +83,18 @@ def build(conn: sqlite3.Connection, *, since: str | None) -> Digest:
         ))
     return Digest(date=datetime.now(), jobs=jobs, counts=counts, new_count=new_count,
                   skipped_reasons=dict(sorted(skipped.items(), key=lambda kv: -kv[1])),
-                  outreach=outreach_items(conn))
+                  outreach=outreach_items(conn), closed=closed_since(conn, since))
+
+
+def closed_since(conn: sqlite3.Connection, since: str | None) -> list[str]:
+    """Jobs worth acting on (ref/apply, not applied) that closed since the last digest."""
+    rows = conn.execute(
+        """SELECT coalesce(c.name, '?') AS company, j.title FROM jobs j JOIN job_scores s ON s.job_id = j.id
+           LEFT JOIN companies c ON c.id = j.company_id LEFT JOIN applications a ON a.job_id = j.id
+           WHERE j.closed_at IS NOT NULL AND j.closed_at > ? AND a.job_id IS NULL
+             AND s.decision IN ('referral_first', 'apply_direct')
+           ORDER BY s.score DESC""", (since or "",)).fetchall()
+    return [f"{r['company']}: {r['title']}" for r in rows]
 
 
 def outreach_items(conn: sqlite3.Connection) -> list[dict]:
@@ -156,6 +169,11 @@ def telegram_text(d: Digest, report_path: str, *, max_apply: int = 12) -> str:
                 lines.append(f"B) {who}: request queued{dry}")
             elif o["status"] == "sent":
                 lines.append(f"B) {who}: request pending")
+    if d.closed:
+        lines.append(f"\n<b>Closed since last digest</b> (dropped from referrals)")
+        lines += [f"✕ {esc(x)}" for x in d.closed[:10]]
+        if len(d.closed) > 10:
+            lines.append(f"   …and {len(d.closed) - 10} more")
     if d.linkedin_status:
         lines.append(f"\n<i>{esc(d.linkedin_status)}</i>")
     lines.append(f"Full report: <code>{esc(report_path)}</code>")

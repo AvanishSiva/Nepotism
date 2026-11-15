@@ -283,12 +283,18 @@ def run(conn: sqlite3.Connection, cfg: Config, *, limit: int | None = None, igno
     from job_agent.referrals.browser import LinkedInBrowser, chrome_available, inspect_profile
     from job_agent.safety import Safety, SafetyStop
 
+    from job_agent.sources.closures import drop_outreach_for_closed
+
+    dropped = drop_outreach_for_closed(conn)          # never send a note about a closed role
+    conn.commit()
     mode, refused = resolve_mode(conn, cfg, force_dry)
     live = mode == "live"
     stats = {"mode": mode, "checked": 0, "would_send": 0, "sent": 0, "aborted": 0, "redrafted": 0,
              "withdrawn": 0, "states": {}, "stopped": None}
     if refused:
         stats["live_refused"] = refused
+    if dropped:
+        stats["dropped_closed_role"] = dropped
     queue = conn.execute(
         """SELECT o.*, r.name, r.profile_url, r.company_id, r.tags_json, r.headline, r.degree
            FROM outreach o JOIN referral_points r ON r.id = o.referral_point_id

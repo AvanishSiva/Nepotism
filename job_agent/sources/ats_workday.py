@@ -56,7 +56,9 @@ def parse_detail(data: dict, company: str, slug: str) -> JobPosting:
 
 
 def fetch(http: Http, company: dict, flt: PreFilter, search_terms: list[str],
-          max_pages: int = 5) -> tuple[int, list[JobPosting]]:
+          max_pages: int = 5) -> tuple[int, list[JobPosting], None]:
+    """Returns (seen, kept, None): the listing is a capped keyword search, so absence from it
+    doesn't mean closed. Closed Workday jobs are detected per job via detail_path() instead."""
     base = base_url(company["slug"])
     candidates: dict[str, dict] = {}   # externalPath -> listing row
     seen = 0
@@ -93,4 +95,10 @@ def fetch(http: Http, company: dict, flt: PreFilter, search_terms: list[str],
         p = parse_detail(detail, company["name"], company["slug"])
         if flt.keep(p):
             kept.append(p)
-    return seen, kept
+    return seen, kept, None
+
+
+def detail_path(apply_url: str | None) -> str | None:
+    """'/job/...' part of an externalUrl, for GET {base}/job/... (the CXS detail endpoint)."""
+    m = re.search(r"(/job/[^?#]+)", apply_url or "")
+    return m.group(1) if m else None

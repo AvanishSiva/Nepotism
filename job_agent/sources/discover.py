@@ -8,7 +8,7 @@ import sqlite3
 from job_agent.config import Config
 from job_agent.http import Http
 from job_agent.normalize import norm_company
-from job_agent.sources import ats_ashby, ats_greenhouse, ats_lever, ats_workday
+from job_agent.sources import ats_ashby, ats_greenhouse, ats_lever, ats_workday, closures
 from job_agent.sources.base import JobPosting, PreFilter
 from job_agent.sources.companies import load_watchlist, sync_watchlist
 from job_agent.store import upsert_job
@@ -16,7 +16,7 @@ from job_agent.store import upsert_job
 log = logging.getLogger(__name__)
 
 
-def _fetch(http: Http, cfg: Config, company: dict, flt: PreFilter) -> tuple[int, list[JobPosting]]:
+def _fetch(http: Http, cfg: Config, company: dict, flt: PreFilter) -> tuple[int, list[JobPosting], set[str] | None]:
     ats = company["ats"]
     if ats == "greenhouse":
         return ats_greenhouse.fetch(http, company, flt)
@@ -43,13 +43,13 @@ def discover_ats(conn: sqlite3.Connection, cfg: Config, *, only: str | None = No
     flt = PreFilter(cfg.preferences)
     http = Http(conn, cfg.discover.user_agent, cfg.discover.request_interval_s,
                 cfg.discover.http_cache_hours, use_cache=use_cache)
-    stats = {"companies": len(rows), "seen": 0, "kept": 0, "new": 0, "updated": 0,
-             "errors": [], "per_company": {}, "watchlist": sync}
+    stats = {"companies": len(rows), "seen": 0, "kept": 0, "new": 0, "updated": 0, "closed": [],
+             "reopened": 0, "errors": [], "per_company": {}, "watchlist": sync}
     try:
         for row in rows:
             company = dict(row)
             try:
-                seen, kept = _fetch(http, cfg, company, flt)
+                seen, kept, feed_ids = _fetch(http, cfg, company, flt)
             except Exception as e:
                 log.error("%s (%s/%s): %s", company["name"], company["ats"], company["slug"], e)
                 stats["errors"].append(f"{company['name']}: {e}")
@@ -65,6 +65,9 @@ def discover_ats(conn: sqlite3.Connection, cfg: Config, *, only: str | None = No
                         new += 1
                     else:
                         updated += 1
+                cl = closures.reconcile(conn, http, company, feed_ids, cfg.discover.close_after_days)
+                stats["closed"] += cl["closed"]
+                stats["reopened"] += cl["reopened"]
                 if company.get("region") != row["region"]:  # Lever host detection
                     conn.execute("UPDATE companies SET region = ? WHERE id = ?",
                                  (company["region"], company["id"]))
@@ -80,6 +83,10 @@ def discover_ats(conn: sqlite3.Connection, cfg: Config, *, only: str | None = No
             stats["per_company"][company["name"]] = {"seen": seen, "kept": len(kept), "new": new}
             log.info("%-12s %-10s seen=%4d kept=%3d new=%3d", company["name"], company["ats"],
                      seen, len(kept), new)
+        if write:
+            stats["closed"] += closures.expire_alert_only(conn, cfg.discover.alert_expire_days)
+            stats["outreach_dropped"] = closures.drop_outreach_for_closed(conn)
+            conn.commit()
     finally:
         stats["http"] = dict(http.stats)
         http.close()

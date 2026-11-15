@@ -34,6 +34,8 @@ class Discover(_Section):
     http_cache_hours: float = 6
     workday_search_terms: list[str] = Field(default_factory=lambda: ["software engineer"])
     workday_max_pages: int = 5
+    close_after_days: int = 3          # ATS job missing from its feed this long → closed
+    alert_expire_days: int = 30        # alert-only job (no ATS link) not re-seen this long → closed
 
 
 class Config(_Section):

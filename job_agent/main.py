@@ -31,6 +31,13 @@ def cmd_discover(args, cfg) -> int:
                                    write=not args.dry_run))
         print(f"\nATS: {st['companies']} companies, {st['seen']} postings scanned, "
               f"{st['kept']} matched, {st['new']} new, {st['updated']} refreshed{dry}")
+        if st.get("closed"):
+            print(f"  closed {len(st['closed'])} job(s): " + "; ".join(st["closed"][:8])
+                  + (" …" if len(st["closed"]) > 8 else ""))
+        if st.get("reopened"):
+            print(f"  reopened {st['reopened']} job(s)")
+        if st.get("outreach_dropped"):
+            print(f"  dropped unsent outreach (role closed): {', '.join(st['outreach_dropped'])}")
         for err in st["errors"]:
             print(f"  ERROR {err}")
     if args.source in ("all", "gmail") and not args.company:
@@ -96,6 +103,7 @@ def cmd_ranked(args, cfg) -> int:
         "SELECT j.id, c.name AS company, j.title, j.location, s.score, s.decision, s.explanation, "
         "s.low_confidence, s.reasons_json, coalesce(j.apply_url, j.linkedin_job_url) AS url "
         "FROM job_scores s JOIN jobs j ON j.id = s.job_id LEFT JOIN companies c ON c.id = j.company_id "
+        "WHERE j.closed_at IS NULL "
         "ORDER BY CASE s.decision WHEN 'referral_first' THEN 0 WHEN 'apply_direct' THEN 1 ELSE 2 END, "
         "s.score DESC"
     ).fetchall()

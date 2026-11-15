@@ -71,7 +71,7 @@ def upsert_job(conn: sqlite3.Connection, company_id: int | None, p: JobPosting) 
         )
         return "new"
 
-    sets: dict[str, object] = {"last_seen_at": now}
+    sets: dict[str, object] = {"last_seen_at": now, "closed_at": None, "closed_reason": None}  # seen → open
     if p.source in ATS_SOURCES:
         for f in _ATS_FIELDS:
             v = getattr(p, f)

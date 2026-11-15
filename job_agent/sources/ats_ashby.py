@@ -53,7 +53,8 @@ def parse_listing(data: dict, company: str) -> list[JobPosting]:
     return out
 
 
-def fetch(http: Http, company: dict, flt: PreFilter) -> tuple[int, list[JobPosting]]:
+def fetch(http: Http, company: dict, flt: PreFilter) -> tuple[int, list[JobPosting], set[str]]:
+    """Returns (total_seen, kept, every posting id in the feed: used to detect closed jobs)."""
     data = http.get_json(API.format(slug=company["slug"]), {"includeCompensation": "true"})
     postings = parse_listing(data, company["name"])
-    return len(postings), [p for p in postings if flt.keep(p)]
+    return len(postings), [p for p in postings if flt.keep(p)], {p.ats_job_id for p in postings}

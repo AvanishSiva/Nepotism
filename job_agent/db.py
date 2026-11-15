@@ -13,7 +13,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_DB_PATH = PROJECT_ROOT / "data" / "job_agent.db"
 
 # Bump when the schema changes; stored in PRAGMA user_version.
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 
 SCHEMA = """
 -- Companies we know about: ATS watchlist + companies seen in alerts.
@@ -54,7 +54,9 @@ CREATE TABLE IF NOT EXISTS jobs (
     ats_job_id       TEXT,
     dedupe_key       TEXT NOT NULL UNIQUE,
     first_seen_at    TEXT NOT NULL DEFAULT (datetime('now')),
-    last_seen_at     TEXT NOT NULL DEFAULT (datetime('now'))
+    last_seen_at     TEXT NOT NULL DEFAULT (datetime('now')),
+    closed_at        TEXT,                         -- gone from the ATS feed / alert too old (NULL = open)
+    closed_reason    TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_jobs_company     ON jobs(company_id);
 CREATE INDEX IF NOT EXISTS idx_jobs_li_job_id   ON jobs(linkedin_job_id);
@@ -198,6 +200,9 @@ def _migrate(conn: sqlite3.Connection) -> None:
     """Additive migrations for DBs created by older code (CREATE IF NOT EXISTS won't add columns)."""
     if "followup_text" not in _columns(conn, "outreach"):          # v2
         conn.execute("ALTER TABLE outreach ADD COLUMN followup_text TEXT")
+    if "closed_at" not in _columns(conn, "jobs"):                   # v3
+        conn.execute("ALTER TABLE jobs ADD COLUMN closed_at TEXT")
+        conn.execute("ALTER TABLE jobs ADD COLUMN closed_reason TEXT")
 
 
 def kv_get(conn: sqlite3.Connection, key: str) -> str | None:

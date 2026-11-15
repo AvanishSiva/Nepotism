@@ -196,7 +196,8 @@ def _contexts(conn: sqlite3.Connection, cfg: Config, only: str | None) -> list[C
                   s.explanation
            FROM job_scores s JOIN jobs j ON j.id = s.job_id JOIN companies c ON c.id = j.company_id
            LEFT JOIN applications a ON a.job_id = j.id
-           WHERE s.decision = 'referral_first' AND a.job_id IS NULL ORDER BY s.score DESC""").fetchall()
+           WHERE s.decision = 'referral_first' AND a.job_id IS NULL AND j.closed_at IS NULL
+           ORDER BY s.score DESC""").fetchall()
     by_company: dict[int, list] = {}
     for r in rows:
         by_company.setdefault(r["cid"], []).append(r)
@@ -219,7 +220,8 @@ def _contexts(conn: sqlite3.Connection, cfg: Config, only: str | None) -> list[C
                 break
             rp = conn.execute("SELECT id FROM referral_points WHERE profile_url = ?", (p.profile_url,)).fetchone()
             if conn.execute("""SELECT 1 FROM outreach WHERE referral_point_id = ? AND NOT
-                               (lane = 'B' AND status = 'aborted' AND error LIKE 'already connected%')""",
+                               (status = 'aborted' AND (error LIKE 'already connected%'
+                                                        OR error LIKE 'role closed%'))""",
                             (rp["id"],)).fetchone():
                 continue                                   # never contact the same person twice
                                                            # (a B note that found them already 1st → Lane A ok)

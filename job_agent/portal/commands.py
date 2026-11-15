@@ -51,7 +51,7 @@ class Out:
 DEC = {"referral_first": ("REF", "g"), "apply_direct": ("APP", "c"), "skip": ("SKP", "d")}
 COMMANDS = {
     "help": "this list",
-    "ls [ref|apply|skip|new|applied|all]": "list scored jobs (default: ref + apply)",
+    "ls [ref|apply|skip|new|applied|closed|all]": "list scored jobs (default: open ref + apply)",
     "show <id>": "job details, facts, gaps, links, JD preview",
     "jd <id>": "full job description",
     "open <id>": "open the apply link in a new tab",
@@ -108,13 +108,14 @@ def _row(out, r):
 def cmd_ls(conn, args, out):
     which = (args[0] if args else "").lower()
     where = {"ref": "s.decision = 'referral_first'", "apply": "s.decision = 'apply_direct'",
-             "skip": "s.decision = 'skip'", "applied": "a.status IS NOT NULL", "all": "1=1"}.get(
+             "skip": "s.decision = 'skip'", "applied": "a.status IS NOT NULL", "all": "1=1",
+             "closed": "j.closed_at IS NOT NULL"}.get(
         which, "s.decision IN ('referral_first','apply_direct')")
     if which == "new":
         last = conn.execute("SELECT value FROM kv WHERE key='last_digest_at'").fetchone()
         where = f"s.decision != 'skip' AND j.first_seen_at > '{last['value'] if last else ''}'"
-    hide = "" if which in ("all", "applied", "skip") else \
-        " AND a.status IS NULL AND coalesce((SELECT verdict FROM feedback f WHERE f.job_id=j.id ORDER BY f.id DESC LIMIT 1),'') != 'skip'"
+    hide = "" if which in ("all", "applied", "skip", "closed") else \
+        " AND j.closed_at IS NULL AND a.status IS NULL AND coalesce((SELECT verdict FROM feedback f WHERE f.job_id=j.id ORDER BY f.id DESC LIMIT 1),'') != 'skip'"
     rows = conn.execute(
         f"""SELECT j.id, j.title, j.location, j.apply_url, j.linkedin_job_url, coalesce(c.name,'?') AS company,
                    s.score, s.decision,
@@ -146,6 +147,8 @@ def cmd_show(conn, args, out):
              (f"   posted {(r['posted_at'] or r['alert_date'] or '?')[:10]}  first seen {r['first_seen_at'][:10]}", "d"))
     if r["app_status"]:
         out.line(("status: ", "d"), (r["app_status"], "g"))
+    if r["closed_at"]:
+        out.line(("CLOSED ", "r"), (f"{r['closed_at'][:10]}: {r['closed_reason']}", "d"))
     if facts:
         yrs = facts.get("years_required")
         out.line(("facts  ", "d"), (f"{facts.get('seniority','?')} · {facts.get('role_type','?')} · "

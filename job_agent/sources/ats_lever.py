@@ -49,8 +49,8 @@ def parse_listing(data: list, company: str) -> list[JobPosting]:
     return out
 
 
-def fetch(http: Http, company: dict, flt: PreFilter) -> tuple[int, list[JobPosting]]:
-    """Returns (total_seen, kept). Sets company['region'] to the host that worked."""
+def fetch(http: Http, company: dict, flt: PreFilter) -> tuple[int, list[JobPosting], set[str]]:
+    """Returns (total_seen, kept, all feed ids). Sets company['region'] to the host that worked."""
     order = ["eu", "us"] if company.get("region") == "eu" else ["us", "eu"]
     last: Exception | None = None
     for region in order:
@@ -61,5 +61,5 @@ def fetch(http: Http, company: dict, flt: PreFilter) -> tuple[int, list[JobPosti
             continue
         company["region"] = region
         postings = parse_listing(data, company["name"])
-        return len(postings), [p for p in postings if flt.keep(p)]
+        return len(postings), [p for p in postings if flt.keep(p)], {p.ats_job_id for p in postings}
     raise last or NotFound(company["slug"])
