@@ -1,0 +1,11 @@
+.env
+credentials/
+data/*.db
+data/*.db-*
+data/Connections.csv
+logs/
+reports/
+__pycache__/
+.venv/
+.pytest_cache/
+data/samples/

@@ -1,0 +1,126 @@
+{
+ "jobs": [
+  {
+   "absolute_url": "https://job-boards.greenhouse.io/intercom/jobs/7820671",
+   "data_compliance": [
+    {
+     "type": "gdpr",
+     "requires_consent": false,
+     "requires_processing_consent": false,
+     "requires_retention_consent": false,
+     "retention_period": null,
+     "demographic_data_consent_applies": false
+    }
+   ],
+   "internal_job_id": 3414208,
+   "location": {
+    "name": "Dublin, Ireland"
+   },
+   "metadata": [
+    {
+     "id": 12214574,
+     "name": "Sales Team",
+     "value": null,
+     "value_type": "single_select"
+    }
+   ],
+   "id": 7820671,
+   "updated_at": "2026-09-16T13:43:49-04:00",
+   "requisition_id": "EVERGREEN",
+   "title": "AI Infrastructure Engineer",
+   "company_name": "Fin",
+   "first_published": "2026-04-17T06:55:05-04:00",
+   "language": "en",
+   "application_deadline": null,
+   "content": "&lt;div class=&quot;content-intro&quot;&gt;&lt;p&gt;&lt;a href=&quot;https://fin.ai/&quot;&gt;Fin&lt;/a&gt;, now part of Salesforce, is on a mission to help businesses provide perfect customer experiences.&lt;/p&gt;\n&lt;p&gt;Our AI Agent Fin is the highest-performing AI Customer Agent on the market today, enabling businesses to deliver impeccable, always-on customer support across the customer journey, from service, to sales, to ecommerce. Powered by our own AI models, Fin resolves complex customer issues end-to-end across every channel, with minimal set-up and integration. Fin can also be combined with our natively integrated Intercom help desk, giving modern support teams one single system.&lt;/p&gt;\n&lt;p&gt;Together with Salesforce, the #1 AI CRM, where humans with agents drive customer success, we&#39;re building the future of customer experience. Here, ambition meets action. Tech meets trust. And innovation isn&#39;t a buzzword, it&#39;s a way of life. The world of work as we know it is changing, and we&#39;re looking for Trailblazers who are passionate about bettering business and the world through AI.&lt;/p&gt;\n&lt;p&gt;Ready to level up your career at the company leading workforce transformation in the agentic era? You&#39;re in the right place. Agentforce is the future of AI, and you are the future of Salesforce.&lt;/p&gt;&lt;/div&gt;&lt;h2&gt;&lt;strong&gt;What&#39;s the opportunity?&lt;/strong&gt;&lt;/h2&gt;\n&lt;p&gt;We\u2019re looking for Senior+ AI Infrastructure Engineers to build the systems that train and serve Fin&#39;s next generation of AI products.&lt;/p&gt;\n&lt;p&gt;Fin is an AI company that builds from the GPU all the way up to a user agent that resolves millions of customer service queries a month.&amp;nbsp;&lt;/p&gt;\n&lt;p&gt;You\u2019ll join a small, highly technical team working at the cutting edge of modern AI infrastructure. The AI Infra team built the training pipelines and runs the inference for custom models like Fin Apex, which outperforms frontier models in customer service tasks, and is the foundation of the AI Group&#39;s full stack approach to AI.&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;We\u2019re particularly interested in engineers who have:&lt;/strong&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;A track record of working on &lt;strong&gt;model training&lt;/strong&gt; or &lt;strong&gt;model inference at scale&lt;/strong&gt;, or on &lt;strong&gt;low\u2011level GPU coding&lt;/strong&gt; (e.g. CUDA, Triton). Experience with one is great, multiple is even better.&lt;/li&gt;\n&lt;/ul&gt;\n&lt;h2&gt;&lt;strong&gt;What will I be doing?&lt;/strong&gt;&lt;/h2&gt;\n&lt;p&gt;As a Senior AI Infrastructure Engineer focused on model training and inference, you will:&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;Implement and scale &lt;strong&gt;training pipelines&lt;/strong&gt; for large transformer and LLM models, from data ingestion and preprocessing through distributed training and evaluation.&lt;/li&gt;\n&lt;li&gt;Build and optimize &lt;strong&gt;inference services&lt;/strong&gt; that deliver low\u2011latency, high\u2011reliability experiences for our customers, including autoscaling, routing, and fallbacks.&lt;/li&gt;\n&lt;li&gt;Work on &lt;strong&gt;GPU\u2011level performance&lt;/strong&gt;: tuning kernels, improving utilization, and identifying bottlenecks across our training and inference stack.&lt;/li&gt;\n&lt;li&gt;Collaborate closely with ML scientists to implement cutting edge training and inference methods and bring them to production.&lt;/li&gt;\n&lt;li&gt;Play an active role in &lt;strong&gt;hiring, mentoring, and developing&lt;/strong&gt; other engineers on the team.&lt;/li&gt;\n&lt;li&gt;Raise the bar for &lt;strong&gt;technical standards, reliability, and operational excellence&lt;/strong&gt; across Fin&#39;s AI platform.&lt;/li&gt;\n&lt;/ul&gt;\n&lt;h2&gt;&lt;strong&gt;Profile we\u2019re looking for:&lt;/strong&gt;&lt;/h2&gt;\n&lt;p&gt;These are indicative, not hard requirements&lt;/p&gt;\n&lt;p&gt;We\u2019re looking to hire &lt;strong&gt;Senior+ AI Infrastructure Engineers&lt;/strong&gt;. You\u2019re likely a great fit if:&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;You have &lt;strong&gt;5+ years of experience in software engineering&lt;/strong&gt;, with a strong track record of shipping high\u2011quality products or platforms.&lt;/li&gt;\n&lt;li&gt;You hold a &lt;strong&gt;degree in Computer Science, Computer Engineering, or a related field&lt;/strong&gt; (or you have equivalent experience with very strong fundamentals).&lt;/li&gt;\n&lt;li&gt;You have hands\u2011on experience with &lt;strong&gt;one or more&lt;/strong&gt; of the following:&lt;/li&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;strong&gt;Model training&lt;/strong&gt; (especially transformers and LLMs).&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Model inference&lt;/strong&gt; at scale (again, especially transformers and LLMs).&lt;/li&gt;\n&lt;li&gt;&lt;strong&gt;Low\u2011level GPU work&lt;/strong&gt;, such as writing &lt;strong&gt;CUDA&lt;/strong&gt; or &lt;strong&gt;Triton&lt;/strong&gt; kernels.&lt;/li&gt;\n&lt;/ul&gt;\n&lt;li&gt;Comfortable working in production environments at &lt;strong&gt;meaningful scale&lt;/strong&gt; (traffic, data, or organizational).&lt;/li&gt;\n&lt;li&gt;You communicate clearly, can explain complex technical topics to different audiences, and enjoy close collaboration with both engineers and non\u2011engineers.&lt;/li&gt;\n&lt;li&gt;You take pride in strong &lt;strong&gt;technical fundamentals&lt;/strong&gt;, love learning, and are willing to invest in your own development.&lt;/li&gt;\n&lt;li&gt;Have deep knowledge of at least one programming language (for example Python, Ruby, Java, Go, etc.). Specific language experience is less important than your ability to write clean, reliable code and learn new stacks quickly.&lt;/li&gt;\n&lt;/ul&gt;\n&lt;h2&gt;&lt;strong&gt;Bonus skills &amp;amp; attributes&lt;/strong&gt;&lt;/h2&gt;\n&lt;p&gt;None of these are required, but they\u2019re nice to have:&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;Experience at &lt;strong&gt;AI native companies&lt;/strong&gt; that &lt;strong&gt;train and/or run inference for their own models&lt;/strong&gt; (e.g. modern AI labs or AI\u2011native product companies).&lt;/li&gt;\n&lt;li&gt;Experience running training or inference workloads on &lt;strong&gt;Kubernetes&lt;/strong&gt;.&lt;/li&gt;\n&lt;li&gt;Experience with &lt;strong&gt;AWS&lt;/strong&gt; or other major cloud providers.&lt;/li&gt;\n&lt;li&gt;Production experience with &lt;strong&gt;Python&lt;/strong&gt; in ML or infrastructure contexts.&lt;/li&gt;\n&lt;li&gt;Demonstrated &lt;strong&gt;passion for technology&lt;/strong&gt; through personal projects, open source, meetups, or publishing content about your work and learnings&lt;/li&gt;\n&lt;/ul&gt;\n&lt;p&gt;#LI-Hybrid&lt;/p&gt;&lt;div class=&quot;content-conclusion&quot;&gt;&lt;p&gt;&lt;strong&gt;Unleash Your Potential&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;When you join Salesforce, you\u2019ll be limitless in all areas of your life. Our benefits and resources support you to find balance and be your best, and our AI agents accelerate your impact so you can do your best. Together, we\u2019ll bring the power of Agentforce to organizations of all sizes and deliver amazing experiences that customers love. Apply today to not only shape the future \u2014 but to redefine what\u2019s possible \u2014 for yourself, for AI, and the world.&lt;/p&gt;\n&lt;p&gt;In the United States, compensation offered will be determined by factors such as location, job level, job-related knowledge, skills, and experience. Certain roles may be eligible for incentive compensation, equity, and benefits. At Fin, we want to give people what they need to do the best work of their careers. Our benefits and programs are designed to support your health and wellbeing, your family, your time away from work, and your financial future. Offerings vary by location in line with local practices and requirements. Learn more about working at Fin and the benefits we offer at&lt;a href=&quot;http://fin.ai/careers&quot;&gt; fin.ai/careers&lt;/a&gt;. Pursuant to the San Francisco Fair Chance Ordinance and the Los Angeles Fair Chance Initiative for Hiring, Salesforce will consider for employment qualified applicants with arrest and conviction records.&amp;nbsp;&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;Policies&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;Fin has a hybrid working policy. We believe that working in person helps us stay connected, collaborate easier and create a great culture while still providing flexibility to work from home. We expect employees to be in the office at least three days per week.&lt;/p&gt;\n&lt;p&gt;We have a radically open and accepting culture at Fin. We avoid spending time on divisive subjects to foster a safe and cohesive work environment for everyone. As an organization, our policy is to not advocate on behalf of the company or our employees on any social or political topics out of our internal or external communications. We respect personal opinion and expression on these topics on personal social platforms on personal time, and do not challenge or confront anyone for their views on non-work related topics. Our goal is to focus on doing incredible work to achieve our goals and unite the company through our&amp;nbsp;&lt;a href=&quot;https://www.intercom.com/careers&quot;&gt;core values&lt;/a&gt;.&amp;nbsp;&amp;nbsp;&lt;/p&gt;\n&lt;p&gt;Salesforce is an equal opportunity employer and maintains a policy of non-discrimination with all employees and applicants for employment. What does that mean exactly? It means that at Salesforce, we believe in equality for all. And we believe we can lead the path to equality in part by creating a workplace that\u2019s inclusive, and free from discrimination.&amp;nbsp;&lt;a href=&quot;https://www.eeoc.gov/know-your-rights-workplace-discrimination-illegal&quot;&gt;Know your rights: workplace discrimination is illegal.&lt;/a&gt; Any employee or potential employee will be assessed on the basis of merit, competence and qualifications \u2013 without regard to race, religion, color, national origin, sex, sexual orientation, gender expression or identity, transgender status, age, disability, veteran or marital status, political viewpoint, or other classifications protected by law. This policy applies to current and prospective employees, no matter where they are in their Salesforce employment journey. It also applies to recruiting, hiring, job assignment, compensation, promotion, benefits, training, assessment of job performance, discipline, termination, and everything in between. Recruiting, hiring, and promotion decisions at Salesforce are fair and based on merit. The same goes for compensation, benefits, promotions, transfers, reduction in workforce, recall, training, and education.&lt;/p&gt;\n&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/div&gt;",
+   "departments": [
+    {
+     "id": 252918,
+     "name": "AI Group",
+     "child_ids": [],
+     "parent_id": 33691
+    }
+   ],
+   "offices": [
+    {
+     "id": 8185,
+     "name": "Dublin, Ireland",
+     "location": "Dublin, Ireland",
+     "child_ids": [],
+     "parent_id": 85811
+    },
+    {
+     "id": 24815,
+     "name": "London, England",
+     "location": "London, Greater London, England, United Kingdom",
+     "child_ids": [],
+     "parent_id": 85811
+    }
+   ],
+   "ai_disclaimer": null,
+   "include_ai_disclaimer": null,
+   "ai_opt_out_request_url": null
+  },
+  {
+   "absolute_url": "https://job-boards.greenhouse.io/intercom/jobs/7247950",
+   "data_compliance": [
+    {
+     "type": "gdpr",
+     "requires_consent": false,
+     "requires_processing_consent": false,
+     "requires_retention_consent": false,
+     "retention_period": null,
+     "demographic_data_consent_applies": false
+    }
+   ],
+   "internal_job_id": 3245441,
+   "location": {
+    "name": "Chicago, Illinois"
+   },
+   "metadata": [
+    {
+     "id": 12214574,
+     "name": "Sales Team",
+     "value": "Account Executives",
+     "value_type": "single_select"
+    }
+   ],
+   "id": 7247950,
+   "updated_at": "2026-11-09T20:52:57-05:00",
+   "requisition_id": "JR104824",
+   "title": "Account Executive, Commercial",
+   "company_name": "Fin",
+   "first_published": "2025-09-16T13:49:41-04:00",
+   "language": "en",
+   "application_deadline": null,
+   "content": "&lt;div class=&quot;content-intro&quot;&gt;&lt;p&gt;&lt;a href=&quot;https://fin.ai/&quot;&gt;Fin&lt;/a&gt;, now part of Salesforce, is on a mission to help businesses provide perfect customer experiences.&lt;/p&gt;\n&lt;p&gt;Our AI Agent Fin is the highest-performing AI Customer Agent on the market today, enabling businesses to deliver impeccable, always-on customer support across the customer journey, from service, to sales, to ecommerce. Powered by our own AI models, Fin resolves complex customer issues end-to-end across every channel, with minimal set-up and integration. Fin can also be combined with our natively integrated Intercom help desk, giving modern support teams one single system.&lt;/p&gt;\n&lt;p&gt;Together with Salesforce, the #1 AI CRM, where humans with agents drive customer success, we&#39;re building the future of customer experience. Here, ambition meets action. Tech meets trust. And innovation isn&#39;t a buzzword, it&#39;s a way of life. The world of work as we know it is changing, and we&#39;re looking for Trailblazers who are passionate about bettering business and the world through AI.&lt;/p&gt;\n&lt;p&gt;Ready to level up your career at the company leading workforce transformation in the agentic era? You&#39;re in the right place. Agentforce is the future of AI, and you are the future of Salesforce.&lt;/p&gt;&lt;/div&gt;&lt;h2&gt;What&#39;s the opportunity?&amp;nbsp;&lt;/h2&gt;\n&lt;p&gt;As a SMB Account Executive, you\u2019ll be at the forefront of growth. You\u2019ll own both sides of your territory: winning new logos and growing a portfolio of existing customers to realize the full power of Fin. We\u2019re building a world-class sales organization that is fast, ambitious and driven, and the road ahead is very exciting.&lt;/p&gt;\n&lt;p&gt;This is a seat at the center of the biggest shift selling has seen in decades. You\u2019ll be selling AI agents to fast-growing businesses rethinking how their entire customer experience works, so the conversations are strategic, technical and interesting. You\u2019ll also use AI every day to run your own territory, from qualification to research to how you run a deal. You won\u2019t just talk about the technology, you\u2019ll work with it.&lt;/p&gt;\n&lt;p&gt;At Fin, we do sales differently. We don\u2019t just pitch; we partner. We\u2019re asking customers to make Fin the heartbeat of their business. That takes salespeople who can think bigger, move faster and win with integrity. We invest deeply in every seller\u2019s growth, and development is built into how we promote, learn and lead. In a high-velocity environment that rewards ownership, creativity and ambition, you\u2019ll find room to stretch, influence and make your mark.&lt;/p&gt;\n&lt;h2&gt;What will I be doing?&amp;nbsp;&lt;/h2&gt;\n&lt;ul&gt;\n&lt;li&gt;Lead the growth and adoption of Fin across your SMB territory, with both new prospects and existing customers&lt;/li&gt;\n&lt;li&gt;Manage the full new business sales cycle, from prospecting to close, through a highly consultative approach&lt;/li&gt;\n&lt;li&gt;Own and grow a portfolio of existing customers, driving expansion, retention, renewals and long-term loyalty&lt;/li&gt;\n&lt;li&gt;Engage executives and operators to uncover pain points, position AI-driven solutions and tie Fin directly to business impact&lt;/li&gt;\n&lt;li&gt;Build data-backed territory and account plans that target new logos, upsell, cross-sell and multi-business-unit expansion&lt;/li&gt;\n&lt;li&gt;Manage a high volume of deals, including complex six-figure opportunities across new and existing business&lt;/li&gt;\n&lt;li&gt;Articulate Fin\u2019s value and differentiation using Command of the Message and MEDDPICC. If these are new to you, you\u2019ll be trained on them&lt;/li&gt;\n&lt;li&gt;Run your business with discipline through QBRs, territory planning, and weekly and monthly forecasting across new business and renewal pipeline&lt;/li&gt;\n&lt;li&gt;Track and communicate the metrics behind your growth, including retention, adoption and platform expansion&lt;/li&gt;\n&lt;li&gt;Partner with Sales Leaders, Sales Engineers, Customer Success and the wider solutions team to win flagship logos and grow strategic accounts&lt;/li&gt;\n&lt;li&gt;Bring the voice of the customer to R&amp;amp;D, Product and Marketing, turning real customer needs into product innovation and GTM alignment&lt;/li&gt;\n&lt;li&gt;Stay at the cutting edge of AI using the best internal tooling and enablement in the market&lt;/li&gt;\n&lt;li&gt;Raise the bar for the team by mentoring peers and sharing winning plays&lt;/li&gt;\n&lt;/ul&gt;\n&lt;h2&gt;What skills do I need?&amp;nbsp;&lt;/h2&gt;\n&lt;ul&gt;\n&lt;li&gt;2+ years in a quota-carrying closing role selling SaaS or DBaaS, with a track record of meeting and exceeding quota&lt;/li&gt;\n&lt;li&gt;Experience winning new business and managing a book of existing customers through retention, renewals and expansion. Strong experience in one with a clear appetite for the other is also welcome&lt;/li&gt;\n&lt;li&gt;Experience, passion and success in outbound prospecting&lt;/li&gt;\n&lt;li&gt;Proven success navigating procurement, complex renewals and senior decision makers&amp;nbsp;&lt;/li&gt;\n&lt;li&gt;Experience selling products with technical complexity or thorough implementation&lt;/li&gt;\n&lt;li&gt;AI fluency or a deep interest in AI tooling, with the ability to turn technical capability into customer value&lt;/li&gt;\n&lt;li&gt;Energized by working in a fast-moving, evolving organization across inbound, outbound and existing customer opportunities&lt;/li&gt;\n&lt;/ul&gt;\n&lt;h2&gt;Bonus skills and attributes&lt;/h2&gt;\n&lt;ul&gt;\n&lt;li&gt;Experience selling AI-powered products&lt;/li&gt;\n&lt;li&gt;Sharp written and verbal communication, adapted to senior stakeholders and technical teams alike&lt;/li&gt;\n&lt;li&gt;A trusted-advisor mindset, building long-term partnerships across multiple levels of complex organizations&lt;/li&gt;\n&lt;li&gt;Demonstrated leadership and influence within your team and across functions&lt;/li&gt;\n&lt;li&gt;A growth mindset, intellectual curiosity and ambition&lt;/li&gt;\n&lt;/ul&gt;\n&lt;p&gt;&amp;nbsp;&lt;/p&gt;\n&lt;p&gt;*Proof of eligibility to work in the United States is required.&lt;/p&gt;\n&lt;p&gt;The OTE range for candidates within the Greater Chicago Area is $&lt;span data-sheets-root=&quot;1&quot;&gt;147,000&lt;/span&gt;-$176,000. Actual base pay will depend on a variety of factors such as education, skills, experience, location, etc. The base pay range is subject to change and may be modified in the future. All regular employees may also be eligible for the corporate bonus program or a sales incentive (target included in OTE) as well as stock in the form of Restricted Stock Units (RSUs).&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;div class=&quot;content-conclusion&quot;&gt;&lt;p&gt;&lt;strong&gt;Unleash Your Potential&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;When you join Salesforce, you\u2019ll be limitless in all areas of your life. Our benefits and resources support you to find balance and be your best, and our AI agents accelerate your impact so you can do your best. Together, we\u2019ll bring the power of Agentforce to organizations of all sizes and deliver amazing experiences that customers love. Apply today to not only shape the future \u2014 but to redefine what\u2019s possible \u2014 for yourself, for AI, and the world.&lt;/p&gt;\n&lt;p&gt;In the United States, compensation offered will be determined by factors such as location, job level, job-related knowledge, skills, and experience. Certain roles may be eligible for incentive compensation, equity, and benefits. At Fin, we want to give people what they need to do the best work of their careers. Our benefits and programs are designed to support your health and wellbeing, your family, your time away from work, and your financial future. Offerings vary by location in line with local practices and requirements. Learn more about working at Fin and the benefits we offer at&lt;a href=&quot;http://fin.ai/careers&quot;&gt; fin.ai/careers&lt;/a&gt;. Pursuant to the San Francisco Fair Chance Ordinance and the Los Angeles Fair Chance Initiative for Hiring, Salesforce will consider for employment qualified applicants with arrest and conviction records.&amp;nbsp;&lt;/p&gt;\n&lt;p&gt;&lt;strong&gt;Policies&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;Fin has a hybrid working policy. We believe that working in person helps us stay connected, collaborate easier and create a great culture while still providing flexibility to work from home. We expect employees to be in the office at least three days per week.&lt;/p&gt;\n&lt;p&gt;We have a radically open and accepting culture at Fin. We avoid spending time on divisive subjects to foster a safe and cohesive work environment for everyone. As an organization, our policy is to not advocate on behalf of the company or our employees on any social or political topics out of our internal or external communications. We respect personal opinion and expression on these topics on personal social platforms on personal time, and do not challenge or confront anyone for their views on non-work related topics. Our goal is to focus on doing incredible work to achieve our goals and unite the company through our&amp;nbsp;&lt;a href=&quot;https://www.intercom.com/careers&quot;&gt;core values&lt;/a&gt;.&amp;nbsp;&amp;nbsp;&lt;/p&gt;\n&lt;p&gt;Salesforce is an equal opportunity employer and maintains a policy of non-discrimination with all employees and applicants for employment. What does that mean exactly? It means that at Salesforce, we believe in equality for all. And we believe we can lead the path to equality in part by creating a workplace that\u2019s inclusive, and free from discrimination.&amp;nbsp;&lt;a href=&quot;https://www.eeoc.gov/know-your-rights-workplace-discrimination-illegal&quot;&gt;Know your rights: workplace discrimination is illegal.&lt;/a&gt; Any employee or potential employee will be assessed on the basis of merit, competence and qualifications \u2013 without regard to race, religion, color, national origin, sex, sexual orientation, gender expression or identity, transgender status, age, disability, veteran or marital status, political viewpoint, or other classifications protected by law. This policy applies to current and prospective employees, no matter where they are in their Salesforce employment journey. It also applies to recruiting, hiring, job assignment, compensation, promotion, benefits, training, assessment of job performance, discipline, termination, and everything in between. Recruiting, hiring, and promotion decisions at Salesforce are fair and based on merit. The same goes for compensation, benefits, promotions, transfers, reduction in workforce, recall, training, and education.&lt;/p&gt;\n&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/div&gt;",
+   "departments": [
+    {
+     "id": 12871,
+     "name": "Sales",
+     "child_ids": [],
+     "parent_id": 237068
+    }
+   ],
+   "offices": [
+    {
+     "id": 15648,
+     "name": "Chicago, IL",
+     "location": "Chicago, IL, United States",
+     "child_ids": [],
+     "parent_id": 85810
+    },
+    {
+     "id": 8184,
+     "name": "San Francisco, CA",
+     "location": "San Francisco, CA, United States",
+     "child_ids": [],
+     "parent_id": 85810
+    }
+   ],
+   "ai_disclaimer": null,
+   "include_ai_disclaimer": null,
+   "ai_opt_out_request_url": null
+  }
+ ]
+}

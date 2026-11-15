@@ -1,0 +1,271 @@
+# job-agent configuration. Secrets go in .env, not here.
+
+profile:
+  # Source: CV "Sivaavanish_CV_Apple (2).pdf" (2026-11-14). Drafted messages may ONLY use
+  # facts from this section. Items marked "CHECK – not on CV" are never used in outreach.
+  name: "Sivaavanish Kanagasabapathi"
+  short_name: "Siva"
+  headline: "Software Engineer, 3 years production experience (Zoho/ManageEngine), MSc Artificial Intelligence (2:1)"
+  years_experience: 3                        # Zoho 05/2022 – 09/2025
+  current_status: "MSc AI (NCI) 2025–2026; looking for full-time software / AI engineering roles in Ireland"
+  work_authorisation: "Stamp 1G: authorised to work full-time in Ireland until 12/2028"
+  location: "Dublin, Ireland"
+  education:
+    - degree: "MSc Artificial Intelligence, 2:1"
+      school: "National College of Ireland"
+      years: "09/2025 – 09/2026"
+    - degree: "Erasmus+ Blended Intensive Programme, AI and Sustainability (certificate)"
+      school: "ICAM Toulouse"
+      years: "06/2026 – 07/2026"
+    - degree: "BE (Hons) Computer Science, First Class Honours, GPA 9.16/10"
+      school: "Anna University"
+      years: "2019 – 2023"
+  past_employers:                            # used in outreach + referral matching
+    - company: "Zoho Corporation (ManageEngine)"
+      aliases: ["Zoho", "ManageEngine"]
+      role: "Member of Technical Staff (Software Engineer)"
+      years: "05/2023 – 09/2025"
+      highlights:
+        - "Built a Java load-balancing framework for ServiceDesk Plus (200+ organisations), cutting request latency by 30%"
+        - "Replaced per-competitor migration scripts with a GPT-4 field-mapping service; the easier migration helped win 10+ enterprise customers"
+        - "Built the asset scanning engine inventorying 500–1,000+ machines per customer across Windows, Linux and network devices"
+        - "Built a REST API microservice for in-product alerts, reducing support tickets by 5%"
+        - "Wrote 600+ automated test cases across 200+ APIs"
+        - "Rated a 5-star developer in Zoho's company-wide rating system"
+    - company: "Zoho Corporation (ManageEngine)"
+      role: "Project Trainee (Software Engineer)"
+      years: "05/2022 – 05/2023"
+      highlights:
+        - "Hardened ServiceDesk Plus against XSS, SQL injection, CSP bypass and XML bomb attacks"
+        - "Optimised the PostgreSQL data model, improving query efficiency by 7%"
+  other_work:                                # not on CV; never used in outreach
+    - { company: "Bon Secours Hospital", role: "Catering Assistant (part-time)", years: "2025–present" }
+  skills:                                    # all from the CV's Technical Skills section
+    strong: ["Java", "Python", "JavaScript", "TypeScript", "SQL", "PostgreSQL", "REST APIs", "Node.js",
+             "AWS", "Git", "GitLab CI/CD", "LangGraph", "LangChain", "Full-stack development", "Microservices",
+             "Automated testing", "Production support"]
+    working: ["C", "C++", "FastAPI", "Flask", "Django", "Spring Boot", "React", "Next.js", "AWS Lambda",
+              "AWS EventBridge", "DynamoDB", "API Gateway", "EC2", "S3", "SageMaker", "MongoDB", "JUnit",
+              "GitHub Actions", "Jenkins", "Docker", "CloudWatch", "LangSmith", "Ollama", "Qwen",
+              "Google Gemini", "Claude API", "LLM-as-judge evaluation", "Prompt engineering", "MCP",
+              "PyTorch", "TensorFlow", "scikit-learn", "XGBoost", "Hugging Face Transformers", "spaCy",
+              "NLTK", "Pandas", "NumPy", "Application security", "Agile/Scrum"]
+    learning: []
+  projects:                                  # all from the CV
+    - name: "MSc dissertation: reflection in LLM negotiation agents"
+      one_liner: "Controlled LangGraph experiment with Qwen 2.5 14B: reflection significantly improved belief consistency (p < 0.0001)."
+      skills: ["LangGraph", "Ollama", "Qwen", "LangSmith", "Python", "Experiment design"]
+    - name: "ProjectEarth (EcoOps)"
+      one_liner: "Multi-agent LangGraph control tower routing data-centre workloads by energy, water and CO2; demoed live at the ICAM Erasmus+ showcase."
+      skills: ["LangGraph", "Multi-agent systems", "PostgreSQL", "Python"]
+    - name: "Job Tracker"
+      one_liner: "Serverless event-driven agent that reads Gmail application emails and updates job stages with Gemini."
+      skills: ["AWS Lambda", "AWS EventBridge", "DynamoDB", "Google Gemini", "TypeScript"]
+    - name: "sivaavanish.dev"
+      one_liner: "Next.js portfolio with a Claude API chat grounded by a TypeScript MCP server exposing 5 tools."
+      skills: ["Next.js", "TypeScript", "Claude API", "MCP"]
+      link: "https://sivaavanish.dev"
+    - name: "Escalation prevention agent (Laya Healthcare & NCI hackathon)"
+      one_liner: "Led a team building an XGBoost escalation-risk model plus a LangChain agent that picks and logs actions."
+      skills: ["XGBoost", "LangChain", "Python", "Machine learning"]
+    - name: "UniFund (Citi Upstart)"
+      one_liner: "Co-led a full-stack AI finance assistant with a LangGraph agent on a locally hosted LLM; demoed to Citi mentors."
+      skills: ["Next.js", "Python", "LangGraph"]
+  achievements:
+    - "BE Computer Science, First Class Honours, GPA 9.16/10"
+  # Not on the CV: NEVER used in drafts until you confirm and move them up.
+  unverified_achievements:
+    - "MSc practicum paper selected for a research conference"
+    - "Surge-pricing RL project: Value Iteration gave +24.7% revenue vs baseline"
+  languages: ["English (fluent)", "Tamil (native)"]
+  links:
+    portfolio: "https://sivaavanish.dev"
+    github: "https://github.com/AvanishSiva"
+    linkedin: "https://linkedin.com/in/sivaavanish-k"
+
+preferences:
+  # Target roles: Software Engineer, AI Engineer, ML Engineer, Backend, AI SWE (agents).
+  role_types: [ai_ml, backend, fullstack]
+  seniority: [junior, mid, senior]          # "senior" scored, not skipped; experience fit handles 5+ yr asks
+  open_to_internships: false
+
+  # Discover stage keeps a job only if its title matches at least one of these
+  # (Python regex, case-insensitive). Seniority/intern exclusions happen later,
+  # in the score stage (filters.title_exclude).
+  target_titles:
+    - '\bai\b.*\b(engineer|developer)\b'      # AI Engineer, AI Infrastructure Engineer
+    - 'machine learning'                       # Machine Learning Engineer
+    - '\bml\b'                                 # ML Engineer, ML Ops
+    - 'mlops'
+    - '\bapplied (ai|ml|scientist)\b'
+    - '\bllm\b'
+    - '\bgen(erative)?\s?ai\b'
+    - 'software (engineer|developer|development)'
+    - '\bswe\b'
+    - '\bback[- ]?end\b'
+    - '\bfull[- ]?stack\b'
+    - '\b(python|java|typescript)\s+(engineer|developer)\b'
+    - '\bforward[- ]deployed\b.*\bengineer'       # Forward Deployed (AI/Software) Engineer
+    - '\bagentic\b.*\b(engineer|developer)\b'
+
+  # A job passes if any location string contains one of these words...
+  locations: [Dublin, Ireland, Cork, Galway, Limerick]
+  # ...or it is remote AND names one of these regions. Ireland only (2026-11-14):
+  # "Remote - Europe/EMEA" roles are dropped unless they also list Ireland.
+  remote_regions: [Ireland]
+  # A bare "Remote" with no region is usually US-only. Set true to keep those.
+  accept_unqualified_remote: false
+  min_salary: null
+
+filters:
+  title_exclude: [staff, principal, director, "head of", manager, intern, internship, "placement student", lead, architect]
+  # JD regexes that make a job impossible → auto-skip.
+  jd_exclude_patterns:
+    - '\b(fluent|native|business[- ]level|proficient)\b[^.\n]{0,30}\b(german|french|dutch|spanish|italian|polish|portuguese|swedish|danish|norwegian|finnish|japanese|mandarin)\b'
+    - '\b(german|french|dutch|spanish|italian|polish|portuguese|swedish|danish|norwegian|finnish|japanese|mandarin)[- ]speak(ing|er)s?\b'
+    - '\bsecurity clearance\b'
+    - '\b(eu|eea|irish|uk) (citizen|citizenship|passport)s? (only|is required|required)\b'
+  # JD regexes that are risky on Stamp 1G but not impossible → -2 penalty + flagged.
+  jd_flag_patterns:
+    - '\b(not|unable to|cannot|can.t|won.t|will not)\b[^.\n]{0,40}\bsponsor'
+    - '\bwithout (the need for )?(visa )?sponsorship\b'
+    - '\bstamp 4\b'
+  rejection_cooldown_days: 90
+  # Recruiters / job aggregators: a referral there makes no sense, so these are
+  # never "referral_first" (capped at apply_direct). Case-insensitive company names.
+  agencies: ["Jobgether", "Joblet-AI", "Archer Recruitment", "AfterQuery Experts", "Alignerr",
+             "Fruition Group Ireland", "Staffviser", "Ethos", "G2i", "Hays", "Morgan McKinley",
+             "Harvey Nash", "Robert Walters", "Sthree", "Cpl", "Reperio Human Capital"]
+  # Applications already made (from your history); treated as applied/rejected.
+  already_applied:
+    rejected: ["Anthropic|AI Reliability Engineering", "Microsoft|Windows + Devices SWE II",
+               "Genesys|Agentic Orchestration", "Workday|*"]
+    in_progress: ["Microsoft|Software Engineer – Agent 365", "Salesforce|AI-native Academy SWE"]
+  rejection_cooldown_days: 90
+
+skills:
+  # JD skill names → your skill names. Lowercase keys.
+  synonyms:                    # JD wording -> your skill name (lowercase keys)
+    "aws lambda": "AWS Lambda"
+    "lambda": "AWS Lambda"
+    "serverless": "AWS Lambda"
+    "eventbridge": "AWS EventBridge"
+    "amazon web services": "AWS"
+    "dynamo": "DynamoDB"
+    "postgres": "PostgreSQL"
+    "relational databases": "SQL"
+    "rdbms": "SQL"
+    "nosql": "MongoDB"
+    "node": "Node.js"
+    "nodejs": "Node.js"
+    "nextjs": "Next.js"
+    "reactjs": "React"
+    "rest": "REST APIs"
+    "restful": "REST APIs"
+    "restful apis": "REST APIs"
+    "web services": "REST APIs"
+    "spring": "Spring Boot"
+    "ci/cd": "GitLab CI/CD"
+    "continuous integration": "GitLab CI/CD"
+    "unit testing": "Automated testing"
+    "test automation": "Automated testing"
+    "containers": "Docker"
+    "llm": "LangChain"
+    "llms": "LangChain"
+    "large language models": "LangChain"
+    "generative ai": "LangChain"
+    "genai": "LangChain"
+    "ai agents": "LangGraph"
+    "agents": "LangGraph"
+    "agentic ai": "LangGraph"
+    "multi-agent": "LangGraph"
+    "multi-agent systems": "LangGraph"
+    "evals": "LLM-as-judge evaluation"
+    "llm evaluation": "LLM-as-judge evaluation"
+    "model context protocol": "MCP"
+    "machine learning": "scikit-learn"
+    "ml": "scikit-learn"
+    "deep learning": "PyTorch"
+    "nlp": "spaCy"
+    "natural language processing": "spaCy"
+    "hugging face": "Hugging Face Transformers"
+    "transformers": "Hugging Face Transformers"
+    "security": "Application security"
+    "owasp": "Application security"
+    "agile": "Agile/Scrum"
+    "scrum": "Agile/Scrum"
+    "golang": "Go"
+    "k8s": "Kubernetes"
+    # generic JD wording your CV covers
+    "backend": "Full-stack development"            # CV: Java and Node.js on the backend
+    "backend development": "Full-stack development"
+    "frontend": "Full-stack development"
+    "web development": "Full-stack development"
+    "backend services": "Microservices"
+    "apis": "REST APIs"
+    "api": "REST APIs"
+    "api design": "REST APIs"
+    "web apis": "REST APIs"
+    "version control": "Git"
+    "testing": "Automated testing"
+    "databases": "SQL"
+    "data modeling": "PostgreSQL"                 # CV: optimised the PostgreSQL data model
+    "debugging": "Production support"
+    "troubleshooting": "Production support"
+  # Fundamentals every SWE job lists; they don't discriminate, so they're ignored
+  # (neither matched nor missing).
+  ignore:
+    ["programming", "software development", "software engineering", "computer science",
+     "data structures", "algorithms", "data structures and algorithms", "coding", "problem solving",
+     "software design", "object oriented programming", "oop", "engineering"]
+  # Score bonus for JDs mentioning these (on top of must-have matching).
+  boost_keywords: ["agentic", "LLM", "multi-agent", "LangGraph", "MCP", "Java", "Python", "TypeScript",
+                   "AWS", "serverless", "evals", "full-stack"]
+
+scoring:
+  weights: { must_have: 0.40, experience: 0.20, role_type: 0.15, nice_to_have: 0.10, freshness: 0.15 }
+  thresholds: { referral_first: 8, apply_direct: 6 }
+
+discover:
+  watchlist_file: data/companies.yaml
+  user_agent: "job-agent/0.1 (personal job search script)"
+  request_interval_s: 1.0        # min gap between requests to the same host
+  http_cache_hours: 6            # re-running discover within this window reuses responses
+  workday_search_terms: ["software engineer", "software developer", "machine learning", "AI engineer"]
+  workday_max_pages: 5           # 20 results per page, per search term
+
+referrals:
+  keywords: ["National College of Ireland", "Anna University", "Zoho", "ManageEngine"]
+  communities: ["ICAM Toulouse", "Erasmus+ BIP", "Citi Upstart"]
+  max_per_company: 2            # active asks per company
+  max_views_per_company: 3      # LinkedIn page views per company per run
+
+linkedin:
+  window: { start: "08:00", end: "10:30", weekdays_only: true }
+  caps: { page_views: 15, requests: 10, withdrawals: 5 }
+  pacing: { view_gap_s: [20, 60], settle_s: [3, 8], send_gap_s: [60, 180] }
+  warmup: [3, 6]                 # requests/day in week 1 and week 2 of live sending, then caps.requests
+  # Lane B sender. "dry_run" opens profiles and logs what it WOULD send. "live" really sends,
+  # and is refused until there are min_dry_run_days days of completed dry runs.
+  send_mode: "dry_run"
+  min_dry_run_days: 5
+  auto_start_chrome: true        # run-all starts scripts/start_chrome.sh if :9222 is down
+
+gmail:
+  # Senders verified 2026-11-14 with `python -m job_agent gmail-peek`:
+  #   jobalerts-noreply@  = your saved job alerts
+  #   jobs-noreply@       = LinkedIn's own recommendations ("jobs similar to…", "apply now to…")
+  linkedin_alert_query: "from:(jobalerts-noreply@linkedin.com OR jobs-noreply@linkedin.com) newer_than:2d"
+  max_messages: 50
+  probe_unknown_ats: true      # guess Greenhouse/Ashby/Lever slugs for companies not in companies.yaml
+  # Verified 2026-11-15: '"<Name> via LinkedIn" <invitations@linkedin.com>', subject
+  # "<First> accepted your invitation, explore their network". 3d window; processed ids are remembered.
+  accepted_query: "from:invitations@linkedin.com subject:\"accepted your invitation\" newer_than:3d"
+
+llm:
+  # Fact extraction: "claude" (claude -p on your Pro plan; ~3 s/job) with Ollama as
+  # fallback when the usage limit is hit, or "ollama" (local, free, ~25 s/job).
+  extract_engine: "claude"
+  claude_model: "sonnet"
+  ollama_model: "qwen2.5:14b"
+  claude_cli: "claude"

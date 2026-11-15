@@ -1,0 +1,50 @@
+# ATS watchlist. Polled daily by `python -m job_agent discover`.
+#
+# Each entry needs a name plus EITHER a careers_url (ATS + slug are detected
+# from it) OR explicit ats + slug. Supported careers URLs:
+#   https://job-boards.greenhouse.io/<slug>      (or boards.greenhouse.io)
+#   https://jobs.lever.co/<slug>                 (jobs.eu.lever.co for EU)
+#   https://jobs.ashbyhq.com/<slug>
+#   https://<tenant>.wd<N>.myworkdayjobs.com/<site>
+#
+# Optional: aliases (other names in alert emails), linkedin_slug.
+# Remove an entry (or set watch: false) to stop polling it.
+#
+# Seeded 2026-11-14: every entry was checked live and had Ireland-based roles.
+
+companies:
+  # --- Greenhouse ---
+  - { name: Stripe,      careers_url: "https://job-boards.greenhouse.io/stripe" }
+  - { name: Intercom,    careers_url: "https://job-boards.greenhouse.io/intercom", aliases: [Fin, Fin.ai] }
+  - { name: MongoDB,     careers_url: "https://job-boards.greenhouse.io/mongodb" }
+  - { name: Toast,       careers_url: "https://job-boards.greenhouse.io/toast" }
+  - { name: Elastic,     careers_url: "https://job-boards.greenhouse.io/elastic" }
+  - { name: Twilio,      careers_url: "https://job-boards.greenhouse.io/twilio" }
+  - { name: Okta,        careers_url: "https://job-boards.greenhouse.io/okta", aliases: [Auth0] }
+  - { name: Squarespace, careers_url: "https://job-boards.greenhouse.io/squarespace" }
+  - { name: Dropbox,     careers_url: "https://job-boards.greenhouse.io/dropbox" }
+  - { name: Anthropic,   careers_url: "https://job-boards.greenhouse.io/anthropic" }
+  - { name: Databricks,  careers_url: "https://job-boards.greenhouse.io/databricks" }
+  - { name: Pinterest,   careers_url: "https://job-boards.greenhouse.io/pinterest" }
+  - { name: HubSpot,     careers_url: "https://job-boards.greenhouse.io/hubspotjobs" }
+  - { name: Datadog,     careers_url: "https://job-boards.greenhouse.io/datadog" }
+  - { name: GitLab,      careers_url: "https://job-boards.greenhouse.io/gitlab" }
+  - { name: Qualtrics,   careers_url: "https://job-boards.greenhouse.io/qualtrics" }
+  - { name: Tines,       careers_url: "https://job-boards.greenhouse.io/tines" }
+  - { name: Coinbase,    careers_url: "https://job-boards.greenhouse.io/coinbase" }
+  - { name: Airbnb,      careers_url: "https://job-boards.greenhouse.io/airbnb" }
+  - { name: Reddit,      careers_url: "https://job-boards.greenhouse.io/reddit" }
+  - { name: Flipdish,    careers_url: "https://job-boards.greenhouse.io/flipdish" }
+
+  # --- Ashby ---
+  - { name: OpenAI,      careers_url: "https://jobs.ashbyhq.com/openai" }
+  - { name: Notion,      careers_url: "https://jobs.ashbyhq.com/notion" }
+  - { name: ElevenLabs,  careers_url: "https://jobs.ashbyhq.com/elevenlabs" }
+  - { name: Perplexity,  careers_url: "https://jobs.ashbyhq.com/perplexity", aliases: [Perplexity AI] }
+  - { name: Vanta,       careers_url: "https://jobs.ashbyhq.com/vanta" }
+  - { name: Wayflyer,    careers_url: "https://jobs.ashbyhq.com/wayflyer" }
+
+  # --- Workday ---
+  - { name: Salesforce,  careers_url: "https://salesforce.wd12.myworkdayjobs.com/External_Career_Site" }
+
+  # --- Lever --- (none of the checked Dublin companies currently use Lever)

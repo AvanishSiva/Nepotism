@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>nepotism</title>
+<style>
+  :root{--bg:#0a0c0a;--fg:#39ff7a;--dim:#2c8a4f;--b:#b6ffcf;--c:#4fd6ff;--y:#ffd75e;--r:#ff5f5f;--o:#ffa94d;--m:#c792ea;--u:#7fb4ff}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg)}
+  body{color:var(--fg);font:14px/1.45 "JetBrains Mono","SF Mono",Menlo,Consolas,monospace;
+       text-shadow:0 0 6px rgba(57,255,122,.18)}
+  #term{height:100%;overflow-y:auto;padding:18px 16px 40px;white-space:pre;cursor:text}
+  .ln{min-height:1.45em}
+  .d{color:var(--dim)} .b{color:var(--b);font-weight:bold} .c{color:var(--c)} .y{color:var(--y)}
+  .r{color:var(--r)} .o{color:var(--o)} .m{color:var(--m)} .g{color:var(--fg)}
+  .u{color:var(--u);text-decoration:underline} a{color:inherit}
+  .cmd{cursor:pointer} .cmd:hover{background:rgba(255,215,94,.15)}
+  .prompt{color:var(--c)} .path{color:var(--y)}
+  #inrow{display:flex}
+  #in{flex:1;background:transparent;border:0;outline:0;color:var(--b);font:inherit;padding:0;margin:0;
+      caret-color:var(--fg);text-shadow:inherit}
+  ::selection{background:#1f5f39}
+  @media (max-width:700px){body{font-size:12px}#term{white-space:pre-wrap;word-break:break-all}}
+</style>
+</head>
+<body>
+<div id="term"><div id="out"></div><div id="inrow"><span class="prompt">siva@nepotism</span><span>:</span><span class="path">~</span><span>$&nbsp;</span><input id="in" autocomplete="off" spellcheck="false" autofocus></div></div>
+<script>
+"use strict";
+const TOKEN = "__TOKEN__";
+const out = document.getElementById("out"), input = document.getElementById("in"), term = document.getElementById("term");
+const CMDS = ["help","ls","show","jd","open","grep","applied","unapply","good","bad","skip","stats","runs","companies","people","drafts","draft","run","clear"];
+const hist = JSON.parse(localStorageGet("nep_hist") || "[]"); let hi = hist.length;
+
+function localStorageGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+function localStorageSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+function scroll(){ term.scrollTop = term.scrollHeight; }
+
+function seg(s){
+  let el;
+  if (s.href && /^https?:\/\//i.test(s.href)) { el = document.createElement("a"); el.href = s.href; el.target = "_blank"; el.rel = "noopener noreferrer"; }
+  else el = document.createElement("span");
+  el.textContent = s.t;                       // never innerHTML: JD/email text is untrusted
+  if (s.c) el.className = s.c;
+  if (s.cmd) { el.classList.add("cmd"); el.title = s.cmd; el.addEventListener("click", ev => { ev.stopPropagation(); run(s.cmd); }); }
+  return el;
+}
+function line(segs){
+  const d = document.createElement("div"); d.className = "ln";
+  (segs || []).forEach(s => d.appendChild(seg(s)));
+  out.appendChild(d);
+}
+function plain(t, c){ line([{t, c}]); }
+function echo(cmd){ line([{t:"siva@nepotism",c:"prompt"},{t:":"},{t:"~",c:"path"},{t:"$ "},{t:cmd,c:"b"}]); }
+
+async function api(path, body){
+  const r = await fetch(path, body ? {method:"POST", headers:{"Content-Type":"application/json","X-Token":TOKEN}, body:JSON.stringify(body)}
+                                   : {headers:{"X-Token":TOKEN}});
+  if (!r.ok) throw new Error((await r.json().catch(()=>({}))).error || r.status);
+  return r.json();
+}
+
+async function follow(tid, stage){
+  plain(`[${stage}] started (task ${tid})`, "d");
+  let from = 0;
+  for (;;) {
+    const t = await api(`/api/task/${tid}?from=${from}`);
+    t.lines.forEach(l => plain(l, /ERROR|Traceback|FAIL/.test(l) ? "r" : /WARNING/.test(l) ? "o" : "d"));
+    from = t.next; scroll();
+    if (t.done) { plain(`[${stage}] exited with code ${t.rc}`, t.rc === 0 ? "g" : "r"); scroll(); return; }
+    await new Promise(r => setTimeout(r, 700));
+  }
+}
+
+async function run(cmd, silent){
+  cmd = cmd.trim();
+  if (!silent) echo(cmd);
+  if (!cmd) { scroll(); return; }
+  if (!silent && hist[hist.length-1] !== cmd) { hist.push(cmd); localStorageSet("nep_hist", JSON.stringify(hist.slice(-200))); }
+  hi = hist.length;
+  try {
+    const res = await api("/api/cmd", {line: cmd});
+    if (res.client && res.client.clear) out.innerHTML = "";
+    res.lines.forEach(line);
+    if (res.client && res.client.open) window.open(res.client.open, "_blank", "noopener");
+    if (res.client && res.client.task) { scroll(); await follow(res.client.task, cmd.split(/\s+/)[1]); }
+  } catch (e) { plain("error: " + e.message + " (is `python -m job_agent portal` still running?)", "r"); }
+  scroll();
+}
+
+input.addEventListener("keydown", e => {
+  if (e.key === "Enter") { const v = input.value; input.value = ""; run(v); }
+  else if (e.key === "ArrowUp") { if (hi > 0) { hi--; input.value = hist[hi]; } e.preventDefault(); }
+  else if (e.key === "ArrowDown") { if (hi < hist.length) { hi++; input.value = hist[hi] || ""; } e.preventDefault(); }
+  else if (e.key === "Tab") {
+    e.preventDefault();
+    const m = CMDS.filter(c => c.startsWith(input.value.trim()));
+    if (m.length === 1) input.value = m[0] + " "; else if (m.length > 1) { echo(input.value); plain(m.join("  "), "d"); scroll(); }
+  }
+  else if (e.key === "l" && e.ctrlKey) { e.preventDefault(); out.innerHTML = ""; }
+  else if (e.key === "c" && e.ctrlKey && !window.getSelection().toString()) { echo(input.value + "^C"); input.value = ""; scroll(); }
+});
+term.addEventListener("click", () => { if (!window.getSelection().toString()) input.focus(); });
+
+const BANNER = [
+" _  _  ___  ___   ___  _____  ___  ___  __  __",
+"| \\| || __|| _ \\ / _ \\|_   _||_ _|/ __||  \\/  |",
+"| .` || _| |  _/| (_) | | |   | | \\__ \\| |\\/| |",
+"|_|\\_||___||_|   \\___/  |_|  |___||___/|_|  |_|",
+"  job agent // local only // " + new Date().toDateString().toLowerCase(),
+];
+BANNER.forEach(l => plain(l, "g"));
+plain("");
+line([{t:"type "},{t:"help",c:"y",cmd:"help"},{t:" for commands · "},{t:"ls",c:"y",cmd:"ls"},{t:" to see today's jobs · Tab completes · ↑↓ history",c:"d"}]);
+plain("");
+run("stats", true);
+</script>
+</body>
+</html>
